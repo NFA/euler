@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/primes.h
+map
+-
+
+/Users/nfa/dev/euler/c++/3/main.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+primes.h
+-
+
