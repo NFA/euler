@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/divisors.h
+vector
+-
+cmath
+-
+primes.h
+../../include/primes.h
+
+../../include/euler.h
+iostream
+-
+
+../../include/primes.h
+vector
+-
+map
+-
+
+/Users/nfa/dev/euler/c++/21/main.cpp
+iostream
+-
+numeric
+-
+divisors.h
+/Users/nfa/dev/euler/c++/21/divisors.h
+euler.h
+/Users/nfa/dev/euler/c++/21/euler.h
+

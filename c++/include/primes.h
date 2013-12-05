@@ -79,7 +79,7 @@ private:
 };
 
 template <typename T>
-std::vector<T> prime_factors(T number) {
+std::vector<T> get_prime_factors(T number) {
   std::vector<T> factors;
   euler::prime_generator<T> primes;
 

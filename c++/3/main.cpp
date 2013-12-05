@@ -26,7 +26,7 @@ long max_prime_factor(long number) {
 
 int main(int argc, char *argv[]) {
   long number = 600851475143;
-  auto factors = euler::prime_factors<long>(number);
+  auto factors = euler::get_prime_factors<long>(number);
   auto max = factors.back();
 
   std::cout << max << std::endl;

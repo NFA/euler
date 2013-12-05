@@ -31,9 +31,8 @@ std::deque<int> factorial(int multiplier, std::deque<int> number = {0, 1}) {
   int carryover = 0;
 
   // need to grow the deque to fit the numbers,
-  int grow = 2;
-  while (grow--)
-    number.push_front(0);
+  number.push_front(0);
+  number.push_front(0);
 
   for (size_t idx = number.size() - 1; idx; --idx) {
     number[idx] = (number[idx] * multiplier) + carryover;
