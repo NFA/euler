@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/euler.h
+iostream
+-
+
+/Users/nfa/dev/euler/c++/24/main.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+euler.h
+/Users/nfa/dev/euler/c++/24/euler.h
+
