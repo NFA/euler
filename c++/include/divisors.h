@@ -6,7 +6,7 @@ namespace euler {
 
 template <typename T = int>
 std::vector<T> get_proper_divisors(T number) {
-  int limit = static_cast<int>(std::sqrt(number));
+  int limit = static_cast<int>(std::sqrt(number)) + 1;
   std::vector<T> divisors;
   std::vector<T> pair;
 
@@ -27,6 +27,7 @@ std::vector<T> get_proper_divisors(T number) {
 
   divisors.insert(end(divisors), begin(pair), end(pair));
   std::sort(begin(divisors), end(divisors));
+  divisors.erase(std::unique(begin(divisors), end(divisors)), end(divisors));
 
   return divisors;
 }
