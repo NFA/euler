@@ -28,7 +28,6 @@ public:
     return static_cast<int>(ss.str().size());
   }
 private:
-  //std::vector<int> bignum;
   std::string bignum;
   enum sign { PLUS, MINUS};
   friend inline BigNum operator+(const BigNum& lhs, const BigNum& rhs);
