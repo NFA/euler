@@ -28,6 +28,7 @@
 
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 #include "primes.h"
 
@@ -65,22 +66,29 @@ int count_primes(int a, int b) {
 }
 
 int main(int argc, char *argv[]) {
-  int max = 0;
-  std::pair<int, int> max_ab{0,0};
+  std::tuple<int, int, int> max{0,0,0};
+  std::vector<int> primes1000{2};
+  euler::prime_generator<int> primeg;
+  while (*primeg < 1000) {
+    primes1000.push_back(*primeg);
+    ++primeg;
+  }
+
 
   //#pragma omp parallel for
   for (int a = -999; a < 1000; ++a) {
-    for (int b = -999; b < 1000; ++b) {
+    // optimization: b is a prime, 10x speed up
+    //for (int b = -999; b < 1000; ++b) {
+    for(auto& b: primes1000) {
       int num_primes = count_primes(a, b);
 
-      if (num_primes > max) {
-        max_ab = {a, b};
-        max = num_primes;
+      if (num_primes > std::get<0>(max)) {
+        max = {num_primes, a, b};
       }
     }
   }
-  std::cout << "(a = " << max_ab.first << ", b = " << max_ab.second
-    << ") generated " << max << " primes." << std::endl;
-  std::cout << "a * b = " << max_ab.first * max_ab.second << std::endl;
+  std::cout << "(a = " << std::get<1>(max) << ", b = " << std::get<2>(max)
+    << ") generated " << std::get<0>(max) << " primes." << std::endl;
+  std::cout << "a * b = " << std::get<1>(max) * std::get<2>(max) << std::endl;
   return 0;
 }
