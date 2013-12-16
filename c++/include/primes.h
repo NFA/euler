@@ -110,6 +110,28 @@ std::vector<T> get_prime_factors(T number) {
   return factors;
 }
 
+
+bool check_prime(const std::vector<int> &primes, int number) {
+  auto srch = find(std::begin(primes), std::end(primes), number);
+  return srch != std::end(primes);
+}
+
+bool is_prime(int number) {
+  static std::vector<int> prime_vector{2};
+  static euler::prime_generator<int> primes;
+
+  if (prime_vector.back() > number) {
+    return check_prime(prime_vector, number);
+  }
+  int newp = 0;
+  while (prime_vector.back() < number) {
+    prime_vector.push_back(*primes);
+    ++primes;
+    ++newp;
+  }
+  return check_prime(prime_vector, number);
+}
+
 }
 #endif
 
