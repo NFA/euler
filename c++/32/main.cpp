@@ -22,6 +22,7 @@
 #include <map>
 #include <utility>
 #include <numeric>
+#include <bitset>
 
 // Reduce number space.
 // Observations from different permutations of 9 numbers
@@ -41,33 +42,37 @@
 //   abcd * e = fghi (subspace 1)
 //   ab * cde = fghi (subspace 2)
 
-bool contains0(int x) {
-  while (x) {
-    if (x % 10 == 0) {
-      return true;
+template <int N>
+bool is_pandigital(int number) {
+  std::bitset<N> digits;
+
+  while (number > 0) {
+    int digit = number % 10;
+    if (digit == 0) {
+      return false;
     }
-    x /= 10;
+    digits.set(digit - 1);
+
+    number /= 10;
   }
-  return false;
+
+  return digits.all();
 }
 
 bool pandigital(int a, int b, int c) {
-  if (c > 9871 || contains0(a) || contains0(b) || contains0(c)) {
+  if (c > 9876) {
     return false;
   }
 
   std::stringstream ss;
-  std::string num_str;
+  int concat;
+
   ss << a << b << c;
-  num_str  = ss.str();
+  ss >> concat;
 
-
-  std::vector<char> numbers(std::begin(num_str), std::end(num_str));
-  std::sort(std::begin(numbers), std::end(numbers));
-  numbers.erase(std::unique(std::begin(numbers), std::end(numbers)), std::end(numbers));
-
-  return numbers.size() == 9;
+  return is_pandigital<9>(concat);
 }
+
 
 int main(int argc, char *argv[]) {
   std::map<int, std::pair<int, int>> products;
@@ -81,7 +86,6 @@ int main(int argc, char *argv[]) {
         }
       }
   };
-
 
   // space 1
   for (int a = 1234; a <= 9876; ++a) {
