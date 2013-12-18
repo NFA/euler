@@ -22,7 +22,8 @@
 #include <map>
 #include <utility>
 #include <numeric>
-#include <bitset>
+
+#include "pandigital.h"
 
 // Reduce number space.
 // Observations from different permutations of 9 numbers
@@ -42,23 +43,6 @@
 //   abcd * e = fghi (subspace 1)
 //   ab * cde = fghi (subspace 2)
 
-template <int N>
-bool is_pandigital(int number) {
-  std::bitset<N> digits;
-
-  while (number > 0) {
-    int digit = number % 10;
-    if (digit == 0) {
-      return false;
-    }
-    digits.set(digit - 1);
-
-    number /= 10;
-  }
-
-  return digits.all();
-}
-
 bool pandigital(int a, int b, int c) {
   if (c > 9876) {
     return false;
@@ -70,7 +54,7 @@ bool pandigital(int a, int b, int c) {
   ss << a << b << c;
   ss >> concat;
 
-  return is_pandigital<9>(concat);
+  return euler::is_pandigital(concat);
 }
 
 

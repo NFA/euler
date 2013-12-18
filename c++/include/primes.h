@@ -110,7 +110,6 @@ std::vector<T> get_prime_factors(T number) {
   return factors;
 }
 
-
 bool check_prime(const std::vector<int> &primes, int number) {
   auto srch = find(std::begin(primes), std::end(primes), number);
   return srch != std::end(primes);
