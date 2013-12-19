@@ -1,6 +1,7 @@
 namespace euler {
 
-bool is_pandigital(int number) {
+template <typename T>
+bool is_pandigital(T number, int N=0x1FF) {
   int seen = 0;
 
   while (number > 0) {
@@ -16,7 +17,7 @@ bool is_pandigital(int number) {
     number /= 10;
   }
   // 1FF = 0b111111111
-  return (seen & 0x1FF) == 0x1FF;
+  return (seen & N) == N;
 }
 
 } /* namspace euler */
